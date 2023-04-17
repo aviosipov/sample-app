@@ -2,12 +2,11 @@
 import React, { useState } from "react";
 import { ContentContainer } from "../components/ContentContainer";
 
-
 const Home = () => {
   return (
     <>
       <ContentContainer>
-        create something awesome here!
+        hello from home, add some comopoents here or goto to test page
       </ContentContainer>
     </>
   );
