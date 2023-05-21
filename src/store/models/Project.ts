@@ -10,9 +10,9 @@ import { applySnapshot } from "mobx-state-tree";
 const Task = types.model("Task", {
   _id: types.identifier,
   taskName: types.string,
-  taskDescription: types.string,
-  startDate: types.string,
-  endDate: types.string,
+  taskDescription: types.optional(types.string, ""),
+  startDate: types.optional(types.string, ""),
+  endDate: types.optional(types.string, ""),
 });
 
 const Note = types.model("Note", {
@@ -40,12 +40,22 @@ const Project = types
       const projectData = yield response.json();
       applySnapshot(self, projectData);
     }),
+    removeTask(taskId: string) {
+      const taskToRemove = self.tasks.find(task => task._id === taskId);
+      if (taskToRemove) {
+        self.tasks.remove(taskToRemove);
+      }
+    },
+    
+
+
     // ... other actions
   }));
 
 type IProject = Instance<typeof Project>;
+type ITask = Instance<typeof Task>;
 type ProjectSnapshotIn = SnapshotIn<typeof Project>;
 type ProjectSnapshotOut = SnapshotOut<typeof Project>;
 
 export { Project, Task, Note };
-export type { IProject, ProjectSnapshotIn, ProjectSnapshotOut };
+export type { IProject, ProjectSnapshotIn, ProjectSnapshotOut, ITask };

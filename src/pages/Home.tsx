@@ -3,6 +3,7 @@ import { observer } from "mobx-react-lite";
 import { ContentContainer } from "../components/ContentContainer";
 import { useRootStore } from "../store/commom/RootStoreContext";
 import { Button } from "../components/core/Button";
+import { ProjectViewer } from "../components/ProjectViewer";
 
 const Home = observer(() => {
   const { projects } = useRootStore();
@@ -43,11 +44,18 @@ const Home = observer(() => {
                   <ul>
                     {project.tasks.slice(0, 2).map((task, taskIdx) => (
                       <li key={taskIdx}>
-                        
                         <div>
-                          <span className="inline-block whitespace-nowrap rounded-[0.27rem] bg-slate-200 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-primary-700">
+                          <span className="inline-block mb-2 whitespace-nowrap rounded-[0.27rem] bg-slate-200 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-primary-700">
                             {task.taskName}
                           </span>
+                          <button
+                            className="inline-block ml-2 text-xs text-gray-500 hover:text-gray-700"
+                            onClick={() => {
+                              project.removeTask(task._id);
+                            }}
+                          >
+                            x
+                          </button>
                         </div>
                       </li>
                     ))}
@@ -66,6 +74,10 @@ const Home = observer(() => {
             ))}
           </tbody>
         </table>
+      </ContentContainer>
+
+      <ContentContainer>
+        <ProjectViewer />
       </ContentContainer>
     </>
   );
