@@ -3,12 +3,11 @@ import { Outlet, useParams } from "react-router-dom";
 import { RootStore } from "./store/models/RootStore";
 import { RootStoreProvider } from "./store/commom/RootStoreContext";
 
+const rootStore = RootStore.create({
+  projects: [],
+});
+
 const App = () => {
-
-  const rootStore = RootStore.create({
-    projects: [],
-  });
-
   useEffect(() => {
     rootStore.loadProjects();
   }, []);
