@@ -1,16 +1,37 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import { observer } from "mobx-react-lite";
+import { Device, DeviceInfo } from "@capacitor/device"; 
 import { ContentContainer } from "../components/ContentContainer";
-import { useRootStore } from "../store/commom/RootStoreContext";
 import { Button } from "../components/core/Button";
 import { ProjectViewer } from "../components/ProjectViewer";
 
 const Home = observer(() => {
-  const { projects } = useRootStore();
+
+
+  const [deviceInfo, setDeviceInfo] = useState<DeviceInfo | null>(null);
+
+  const handleGetDeviceInfo = async () => {
+    const info = await Device.getInfo();
+    setDeviceInfo(info);
+  };
+
+
   const handleClick = () => {};
 
   return (
     <>
+
+<div className="mb-4">
+        <Button onClick={handleGetDeviceInfo} label="Get Device Info" />
+        {deviceInfo && (
+          <div>
+            <p>Device ID: {deviceInfo.model}</p>
+            <p>Operating System: {deviceInfo.operatingSystem}</p>
+          </div>
+        )}
+      </div>
+      
+
       <div className="mb-4">
         <Button onClick={handleClick} label="click" />
       </div>
@@ -34,44 +55,7 @@ const Home = observer(() => {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {projects.map((project, idx) => (
-              <tr key={idx}>
-                <td className="px-6 py-4 whitespace-nowrap">{project.name}</td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  {project.description}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <ul>
-                    {project.tasks.slice(0, 2).map((task, taskIdx) => (
-                      <li key={taskIdx}>
-                        <div>
-                          <span className="inline-block mb-2 whitespace-nowrap rounded-[0.27rem] bg-slate-200 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-primary-700">
-                            {task.taskName}
-                          </span>
-                          <button
-                            className="inline-block ml-2 text-xs text-gray-500 hover:text-gray-700"
-                            onClick={() => {
-                              project.removeTask(task._id);
-                            }}
-                          >
-                            x
-                          </button>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <ul>
-                    {project.notes.slice(0, 2).map((note, noteIdx) => (
-                      <li key={noteIdx}>
-                        {note.noteTitle} ({note.dateCreated})
-                      </li>
-                    ))}
-                  </ul>
-                </td>
-              </tr>
-            ))}
+          
           </tbody>
         </table>
       </ContentContainer>
