@@ -4,11 +4,13 @@ import { Device, DeviceInfo } from "@capacitor/device";
 import { ContentContainer } from "../components/ContentContainer";
 import { Button } from "../components/core/Button";
 import { ProjectViewer } from "../components/ProjectViewer";
+import { MrRobot  } from 'mr-robot';
+
 
 const Home = observer(() => {
 
-
   const [deviceInfo, setDeviceInfo] = useState<DeviceInfo | null>(null);
+  const [echoMessage, setEchoMessage] = useState<string>("");
 
   const handleGetDeviceInfo = async () => {
     const info = await Device.getInfo();
@@ -16,7 +18,10 @@ const Home = observer(() => {
   };
 
 
-  const handleClick = () => {};
+  const handleClick = async () => {
+    const message = await MrRobot.echo({ value : 'test'});
+    setEchoMessage(message.value);
+  };
 
   return (
     <>
@@ -27,6 +32,11 @@ const Home = observer(() => {
           <div>
             <p>Device ID: {deviceInfo.model}</p>
             <p>Operating System: {deviceInfo.operatingSystem}</p>
+          </div>
+        )}
+        {echoMessage && (
+          <div>
+            <p>Message: {echoMessage}</p>
           </div>
         )}
       </div>
