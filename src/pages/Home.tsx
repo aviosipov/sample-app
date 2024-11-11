@@ -1,5 +1,6 @@
 import React from "react";
 import { ContentContainer } from "../components/ContentContainer";
+import { Button } from "../components/Button";
 
 const Home = () => {
   return (
@@ -34,13 +35,17 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="flex justify-center space-x-4">
-          <button className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+        <div className="flex justify-center items-center space-x-4">
+          <Button variant="primary">
             Get Started
-          </button>
-          <button className="px-6 py-2 border-2 border-blue-600 text-blue-600 rounded-md hover:bg-blue-50 transition-colors">
+          </Button>
+          <Button variant="secondary">
             View Docs
-          </button>
+          </Button>
+          <div className="h-8 w-px bg-gray-300 mx-2"></div>
+          <Button variant="accent" to="/he">
+            עברית
+          </Button>
         </div>
       </div>
     </ContentContainer>

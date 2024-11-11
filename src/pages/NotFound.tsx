@@ -1,5 +1,5 @@
 import { ContentContainer } from "../components/ContentContainer";
-import { Link } from "react-router-dom";
+import { Button } from "../components/Button";
 
 export const NotFound = () => {
   return (
@@ -11,12 +11,9 @@ export const NotFound = () => {
           Oops! The page you're looking for doesn't exist. You might have mistyped the address
           or the page may have moved.
         </p>
-        <Link 
-          to="/" 
-          className="inline-block px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
-        >
+        <Button variant="primary" to="/">
           Return Home
-        </Link>
+        </Button>
       </div>
     </ContentContainer>
   );

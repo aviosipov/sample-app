@@ -7,10 +7,11 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-       Roboto: ["Roboto", "cursive"],
+        opensans: ["Open Sans", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Arial", "sans-serif"],
       },
     },
   },
-
-  plugins: [],
+  plugins: [
+    require('tailwindcss-logical'),
+  ],
 }

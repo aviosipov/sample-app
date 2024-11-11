@@ -1,4 +1,5 @@
-import {  Home } from "./pages/Home";
+import { Home } from "./pages/Home";
+import { HomeHe } from "./pages/HomeHe";
 import { NotFound } from "./pages/NotFound";
 import React from "react";
 import ReactDOM from "react-dom/client";
@@ -12,6 +13,10 @@ export const browserRouter = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/he",
+        element: <HomeHe />,
       },
       { path: "*", element: <NotFound /> },
     ],
