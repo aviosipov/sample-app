@@ -4,7 +4,7 @@ interface ContentContainerProps {
 
 const ContentContainer: React.FC<ContentContainerProps> = ({ children }) => {
   return (
-    <main className="flex-1 overflow-y-scroll antialiased">{children}</main>
+    <main className="flex-1 overflow-y-scroll antialiased p-4">{children}</main>
   );
 };
 

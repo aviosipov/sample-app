@@ -1,23 +1,23 @@
-import { ContainerBGImage } from "../components/ContainerBGImage";
 import { ContentContainer } from "../components/ContentContainer";
-import { ContentPageContainer } from "../components/ContentPageContainer";
+import { Link } from "react-router-dom";
 
 export const NotFound = () => {
   return (
     <ContentContainer>
-      <ContainerBGImage bgImage="/not-found.png">
-        <ContentPageContainer>
-          <h1 className=" text-3xl mb-6">Whoops! The Chatbot Escaped</h1>
-          <p>
-            Looks like the chatbot you were looking for has gone rogue and
-            escaped from our lab. Don't worry, our team of highly trained AI
-            experts are on the case and are working tirelessly to catch it and
-            bring it back. In the meantime, why not try chatting with one of our
-            other chatbots? They promise to behave and stay within their
-            designated areas. Thank you for your understanding and patience.
-          </p>
-        </ContentPageContainer>
-      </ContainerBGImage>
+      <div className="text-center">
+        <h1 className="text-6xl font-bold text-gray-900 mb-4">404</h1>
+        <h2 className="text-3xl font-semibold text-gray-700 mb-6">Page Not Found</h2>
+        <p className="text-gray-600 mb-8 max-w-md mx-auto">
+          Oops! The page you're looking for doesn't exist. You might have mistyped the address
+          or the page may have moved.
+        </p>
+        <Link 
+          to="/" 
+          className="inline-block px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+        >
+          Return Home
+        </Link>
+      </div>
     </ContentContainer>
   );
 };
